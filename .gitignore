@@ -1,0 +1,25 @@
+# Environnement Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Secrets (clé API Claude plus tard)
+.env
+.env.*
+!.env.example
+
+# Sorties lourdes / regenerables — on versionne le code, pas les PDF ni le Markdown extrait
+data/10-K/*.pdf
+data/processed/**
+!data/processed/**/.gitkeep
+
+# Base Qdrant locale (regenerable via le script d'indexation)
+data/qdrant/
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/

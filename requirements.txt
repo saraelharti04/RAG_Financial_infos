@@ -1,0 +1,23 @@
+# Extraction PDF (brique 1)
+docling>=2.0.0
+
+# Embeddings (brique 3)
+sentence-transformers>=3.0.0
+
+# Vector store (brique 4)
+qdrant-client>=1.12.0
+
+# Recherche hybride (brique 5) + reranker (brique 6, via sentence-transformers CrossEncoder)
+rank-bm25>=0.2.2
+
+# Génération Claude (brique 7) — optionnel si --llm claude
+anthropic>=0.40.0
+python-dotenv>=1.0.0
+
+# Interface démo
+streamlit>=1.32.0
+
+# Évaluation RAGAS (brique 8) — juge via Ollama
+ragas>=0.2.0
+langchain-ollama>=0.2.0
+langchain-huggingface>=0.1.0

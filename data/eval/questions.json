@@ -1,0 +1,26 @@
+[
+  {
+    "id": "apple_supply_chain",
+    "question": "What are Apple's supply chain risks?",
+    "company": "Apple",
+    "ground_truth": "Apple faces supply chain risks including dependence on single or limited-source components and possible shortages or price increases; reliance on manufacturing and logistics outsourcing partners largely outside the U.S.; and disruptions from geopolitical events, trade disputes, natural disasters, public health issues, or industrial accidents that can interrupt the supply and manufacturing chain."
+  },
+  {
+    "id": "apple_fiscal_year",
+    "question": "What is the fiscal year end date covered by Apple's latest 10-K in this corpus?",
+    "company": "Apple",
+    "ground_truth": "Apple's fiscal year ended September 27, 2025."
+  },
+  {
+    "id": "apple_segments",
+    "question": "How does Apple organize its reportable geographic segments?",
+    "company": "Apple",
+    "ground_truth": "Apple manages its business primarily on a geographic basis with reportable segments: Americas, Europe, Greater China, Japan, and Rest of Asia Pacific."
+  },
+  {
+    "id": "out_of_scope_tesla",
+    "question": "What was Tesla's total revenue in 2025 according to these 10-K filings?",
+    "company": null,
+    "ground_truth": "The corpus only contains GAFAM 10-K filings and does not include Tesla; the system should state that this information is not available in the provided context."
+  }
+]

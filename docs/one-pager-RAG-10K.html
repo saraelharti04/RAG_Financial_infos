@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>One-pager — RAG hybride 10-K GAFAM — Sara El Harti</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 12mm 14mm;
+    }
+
+    :root {
+      --ink: #1a1f2e;
+      --muted: #4a5568;
+      --line: #d0d7e2;
+      --accent: #1e3a5f;
+      --soft: #f4f6f9;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      color: var(--ink);
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 9.2pt;
+      line-height: 1.35;
+      background: #fff;
+    }
+
+    .page {
+      max-width: 210mm;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    header {
+      border-bottom: 2.5px solid var(--accent);
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+    }
+
+    .eyebrow {
+      font-size: 7.5pt;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0 0 3px;
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 15.5pt;
+      font-weight: 700;
+      margin: 0 0 4px;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 8.8pt;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      margin-top: 6px;
+      font-size: 8pt;
+      color: var(--muted);
+    }
+
+    .meta strong { color: var(--ink); font-weight: 600; }
+
+    h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 10pt;
+      color: var(--accent);
+      margin: 9px 0 4px;
+      padding-bottom: 2px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    p { margin: 0 0 5px; }
+
+    ul {
+      margin: 2px 0 6px;
+      padding-left: 16px;
+    }
+
+    li { margin-bottom: 2px; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 14px;
+    }
+
+    .card {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: 6px 8px;
+    }
+
+    .card h3 {
+      margin: 0 0 3px;
+      font-size: 8.5pt;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .card p, .card li { font-size: 8.2pt; }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+      margin: 4px 0 6px;
+    }
+
+    .step {
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      padding: 4px 6px;
+      background: #fff;
+      font-size: 7.8pt;
+    }
+
+    .step strong {
+      display: block;
+      font-size: 8pt;
+      color: var(--accent);
+      margin-bottom: 1px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #e8eef5;
+      color: var(--accent);
+      border-radius: 2px;
+      padding: 1px 5px;
+      font-size: 7.5pt;
+      font-weight: 600;
+      margin-right: 3px;
+    }
+
+    .stack {
+      margin: 0;
+      font-size: 8.2pt;
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px solid var(--line);
+      font-size: 7.5pt;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    @media print {
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .page { max-width: none; }
+      .no-print { display: none !important; }
+    }
+
+    .hint {
+      background: #fff8e8;
+      border: 1px solid #e6d9a8;
+      padding: 8px 10px;
+      margin: 12px auto;
+      max-width: 210mm;
+      font-size: 10pt;
+      color: #5c4e1f;
+    }
+  </style>
+</head>
+<body>
+  <div class="hint no-print">
+    <strong>Export PDF :</strong> ouvre ce fichier dans Chrome / Safari →
+    Fichier → Imprimer → Destination <em>Enregistrer au format PDF</em> →
+    Marges <em>Par défaut</em>, cocher <em>Graphiques d’arrière-plan</em>.
+    Objectif : 1 page A4.
+  </div>
+
+  <div class="page">
+    <header>
+      <p class="eyebrow">Document projet — candidature</p>
+      <h1>RAG hybride pour l’analyse de rapports financiers 10-K (GAFAM)</h1>
+      <p class="subtitle">
+        Système de question-réponse ancré dans des filings SEC — retrieval hybride
+        texte + roadmap données tabulaires (text-to-SQL) et routing intelligent.
+      </p>
+      <div class="meta">
+        <span><strong>Auteure :</strong> Sara El Harti</span>
+        <span><strong>Profil :</strong> Master 1 Data Science × Financial Engineering</span>
+        <span><strong>Type :</strong> projet personnel d’ingénierie RAG de bout en bout</span>
+        <span><strong>Corpus :</strong> 5 Form 10-K (Apple, Amazon, Alphabet, Meta, Microsoft)</span>
+      </div>
+    </header>
+
+    <h2>Problématique &amp; objectif</h2>
+    <p>
+      Les rapports 10-K mêlent narratif dense (facteurs de risque, MD&amp;A) et états
+      financiers chiffrés. Un LLM seul hallucine ; une recherche purement lexicale
+      rate les paraphrases. Ce projet construit un <strong>RAG (Retrieval-Augmented Generation)</strong>
+      qui récupère les passages pertinents puis génère une réponse <em>citée</em>,
+      avec une architecture évolutive vers l’interrogation SQL des tableaux.
+    </p>
+
+    <h2>Architecture produit (3 versions)</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3><span class="tag">V1 livrée</span> RAG texte</h3>
+        <p>
+          Pipeline complet : extraction PDF → chunking → embeddings → Qdrant →
+          recherche hybride (dense + BM25, fusion RRF) → rerank optionnel →
+          génération locale (Ollama) → UI Streamlit → évaluation RAGAS.
+        </p>
+      </div>
+      <div class="card">
+        <h3><span class="tag">V2</span> Module tabulaire</h3>
+        <p>
+          Données financières structurées dans <strong>DuckDB</strong> ;
+          questions chiffrées via <strong>text-to-SQL</strong> (sans routing auto).
+          Complète le RAG là où les tableaux cassent le chunking texte.
+        </p>
+      </div>
+      <div class="card">
+        <h3><span class="tag">V3</span> Orchestration</h3>
+        <p>
+          <strong>Function calling</strong> : le système choisit texte, SQL, ou les deux,
+          puis fusionne les réponses. Un seul point d’entrée pour l’analyste.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Valeur pour un recruteur</h3>
+        <p>
+          Maîtrise NLP/LLM appliquée à la finance, retrieval moderne, eval,
+          produit démo, et vision claire données non structurées ↔ structurées.
+        </p>
+      </div>
+    </div>
+
+    <h2>V1 — pipeline technique (réalisé)</h2>
+    <div class="pipeline">
+      <div class="step">
+        <strong>1. Extraction</strong>
+        Docling : PDF 10-K → Markdown structuré (titres, blocs).
+      </div>
+      <div class="step">
+        <strong>2. Chunking</strong>
+        Hybride : coupe sur titres Markdown, puis taille max + overlap.
+      </div>
+      <div class="step">
+        <strong>3. Index</strong>
+        Embeddings BGE-small (384-d) ; Qdrant local (cosine) + meta entreprise/section.
+      </div>
+      <div class="step">
+        <strong>4. Réponse</strong>
+        Hybride RRF ± rerank MiniLM ; Ollama qwen2.5:3b ; démo Streamlit ; RAGAS.
+      </div>
+    </div>
+    <p>
+      <strong>Choix clés :</strong> recherche hybride pour corriger les faux amis sémantiques
+      (ex. « supply agreements » vs risques supply chain) ; génération locale pour un déploiement
+      sans coût API ; filtre par ticker/entreprise pour limiter le bruit cross-GAFAM.
+      <strong>Échelle indicative V1 :</strong> ~2&nbsp;200 chunks indexés sur 5 filings.
+    </p>
+
+    <h2>Stack &amp; livrables</h2>
+    <p class="stack">
+      <strong>Stack :</strong> Python · Docling · sentence-transformers (BGE) · Qdrant ·
+      rank-bm25 · Ollama · Streamlit · RAGAS · (Claude API optionnelle) · DuckDB prévue en V2
+      &nbsp;|&nbsp;
+      <strong>Livrables :</strong> code modulaire (extraction, chunking, embeddings, indexing,
+      retrieval, generation, evaluation) · interface démo · dataset d’éval · one-pager
+    </p>
+
+    <h2>Limites assumées &amp; apprentissages</h2>
+    <ul>
+      <li>Tableaux financiers fragiles en V1 texte → motivent explicitement la V2 SQL.</li>
+      <li>Reranker léger (MiniLM) parfois inférieur à l’hybride RRF seul — d’où l’intérêt de mesurer (RAGAS).</li>
+      <li>Juge RAGAS local (petit LLM) : scores indicatifs, utiles pour itérer, pas comme benchmark labo.</li>
+    </ul>
+
+    <footer>
+      <span>Projet RAG 10-K GAFAM — one-pager candidature</span>
+      <span>V1 livrée · V2/V3 roadmap architecture</span>
+    </footer>
+  </div>
+</body>
+</html>

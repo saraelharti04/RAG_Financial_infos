@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>One-pager — Hybrid RAG on GAFAM 10-Ks — Sara El Harti</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 12mm 14mm;
+    }
+
+    :root {
+      --ink: #1a1f2e;
+      --muted: #4a5568;
+      --line: #d0d7e2;
+      --accent: #1e3a5f;
+      --soft: #f4f6f9;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      color: var(--ink);
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 9.2pt;
+      line-height: 1.35;
+      background: #fff;
+    }
+
+    .page {
+      max-width: 210mm;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    header {
+      border-bottom: 2.5px solid var(--accent);
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+    }
+
+    .eyebrow {
+      font-size: 7.5pt;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0 0 3px;
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 15.5pt;
+      font-weight: 700;
+      margin: 0 0 4px;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 8.8pt;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      margin-top: 6px;
+      font-size: 8pt;
+      color: var(--muted);
+    }
+
+    .meta strong { color: var(--ink); font-weight: 600; }
+
+    h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 10pt;
+      color: var(--accent);
+      margin: 9px 0 4px;
+      padding-bottom: 2px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    p { margin: 0 0 5px; }
+
+    ul {
+      margin: 2px 0 6px;
+      padding-left: 16px;
+    }
+
+    li { margin-bottom: 2px; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 14px;
+    }
+
+    .card {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: 6px 8px;
+    }
+
+    .card h3 {
+      margin: 0 0 3px;
+      font-size: 8.5pt;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .card p, .card li { font-size: 8.2pt; }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+      margin: 4px 0 6px;
+    }
+
+    .step {
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      padding: 4px 6px;
+      background: #fff;
+      font-size: 7.8pt;
+    }
+
+    .step strong {
+      display: block;
+      font-size: 8pt;
+      color: var(--accent);
+      margin-bottom: 1px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #e8eef5;
+      color: var(--accent);
+      border-radius: 2px;
+      padding: 1px 5px;
+      font-size: 7.5pt;
+      font-weight: 600;
+      margin-right: 3px;
+    }
+
+    .stack {
+      margin: 0;
+      font-size: 8.2pt;
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px solid var(--line);
+      font-size: 7.5pt;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    @media print {
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .page { max-width: none; }
+      .no-print { display: none !important; }
+    }
+
+    .hint {
+      background: #fff8e8;
+      border: 1px solid #e6d9a8;
+      padding: 8px 10px;
+      margin: 12px auto;
+      max-width: 210mm;
+      font-size: 10pt;
+      color: #5c4e1f;
+    }
+  </style>
+</head>
+<body>
+  <div class="hint no-print">
+    <strong>Export to PDF:</strong> open this file in Chrome / Safari →
+    File → Print → Destination <em>Save as PDF</em> →
+    default margins, enable <em>Background graphics</em>.
+    Target: 1× A4 page.
+  </div>
+
+  <div class="page">
+    <header>
+      <p class="eyebrow">Project brief — application supplement</p>
+      <h1>Hybrid RAG for Financial 10-K Analysis (GAFAM)</h1>
+      <p class="subtitle">
+        Question answering grounded in SEC filings — hybrid text retrieval,
+        with a roadmap for tabular querying (text-to-SQL) and intelligent routing.
+      </p>
+      <div class="meta">
+        <span><strong>Author:</strong> Sara El Harti</span>
+        <span><strong>Profile:</strong> Master’s Year 1 — Data Science × Financial Engineering</span>
+        <span><strong>Type:</strong> personal end-to-end RAG engineering project</span>
+        <span><strong>Corpus:</strong> 5 Form 10-Ks (Apple, Amazon, Alphabet, Meta, Microsoft)</span>
+      </div>
+    </header>
+
+    <h2>Problem &amp; objective</h2>
+    <p>
+      10-K reports mix dense narrative (risk factors, MD&amp;A) with numerical financial
+      statements. A standalone LLM hallucinates; pure keyword search misses paraphrases.
+      This project builds a <strong>RAG (Retrieval-Augmented Generation)</strong> system that
+      retrieves relevant passages and generates <em>cited</em> answers, with an architecture
+      designed to extend toward SQL over financial tables.
+    </p>
+
+    <h2>Product architecture (3 versions)</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3><span class="tag">V1 delivered</span> Text RAG</h3>
+        <p>
+          Full pipeline: PDF extraction → chunking → embeddings → Qdrant →
+          hybrid search (dense + BM25, RRF fusion) → optional rerank →
+          local generation (Ollama) → Streamlit UI → RAGAS evaluation.
+        </p>
+      </div>
+      <div class="card">
+        <h3><span class="tag">V2</span> Tabular module</h3>
+        <p>
+          Structured financial data in <strong>DuckDB</strong>;
+          numerical questions via <strong>text-to-SQL</strong> (no auto-routing yet).
+          Complements text RAG where tables break under naive chunking.
+        </p>
+      </div>
+      <div class="card">
+        <h3><span class="tag">V3</span> Orchestration</h3>
+        <p>
+          <strong>Function calling</strong>: the system chooses text, SQL, or both,
+          then merges answers. A single entry point for the analyst.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Value for recruiters</h3>
+        <p>
+          NLP/LLMs applied to finance, modern retrieval, evaluation, a working demo,
+          and a clear vision spanning unstructured ↔ structured data.
+        </p>
+      </div>
+    </div>
+
+    <h2>V1 — technical pipeline (delivered)</h2>
+    <div class="pipeline">
+      <div class="step">
+        <strong>1. Extraction</strong>
+        Docling: 10-K PDFs → structured Markdown (headings, blocks).
+      </div>
+      <div class="step">
+        <strong>2. Chunking</strong>
+        Hybrid: split on Markdown headings, then max size + overlap.
+      </div>
+      <div class="step">
+        <strong>3. Index</strong>
+        BGE-small embeddings (384-d); local Qdrant (cosine) + company/section metadata.
+      </div>
+      <div class="step">
+        <strong>4. Answer</strong>
+        Hybrid RRF ± MiniLM rerank; Ollama qwen2.5:3b; Streamlit demo; RAGAS.
+      </div>
+    </div>
+    <p>
+      <strong>Key design choices:</strong> hybrid retrieval to fix semantic false friends
+      (e.g. “supply agreements” vs true supply-chain risks); local generation for
+      zero API cost; company filters to reduce cross-GAFAM noise.
+      <strong>Indicative V1 scale:</strong> ~2,200 chunks indexed across 5 filings.
+    </p>
+
+    <h2>Stack &amp; deliverables</h2>
+    <p class="stack">
+      <strong>Stack:</strong> Python · Docling · sentence-transformers (BGE) · Qdrant ·
+      rank-bm25 · Ollama · Streamlit · RAGAS · (optional Claude API) · DuckDB planned in V2
+      &nbsp;|&nbsp;
+      <strong>Deliverables:</strong> modular code (extraction, chunking, embeddings, indexing,
+      retrieval, generation, evaluation) · demo UI · eval dataset · one-pager
+    </p>
+
+    <h2>Acknowledged limits &amp; learnings</h2>
+    <ul>
+      <li>Financial tables remain fragile in text-only V1 → explicitly motivate SQL V2.</li>
+      <li>Lightweight MiniLM reranker can underperform hybrid RRF alone — hence measure with RAGAS.</li>
+      <li>Local RAGAS judge (small LLM): indicative scores for iteration, not lab-grade benchmarks.</li>
+    </ul>
+
+    <footer>
+      <span>GAFAM 10-K RAG project — application one-pager</span>
+      <span>V1 delivered · V2/V3 architecture roadmap</span>
+    </footer>
+  </div>
+</body>
+</html>
